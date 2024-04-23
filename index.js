@@ -11,15 +11,15 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 // Option 1: Allow All Origin with default of cors(*)
-// app.use(cors());
+app.use(cors());
 // Option 2: Allow Custom Origins
-app.use(
-  cors({
-    origin: "https://ocalhost:3000",
-    method: ['GET','POST','PUT','DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://ocalhost:3000",
+//     method: ['GET','POST','PUT','DELETE'],
+//     allowedHeaders: ['Content-Type'],
+//   })
+// );
 
 app.get("/", (request, response) => {
   console.log(request);
