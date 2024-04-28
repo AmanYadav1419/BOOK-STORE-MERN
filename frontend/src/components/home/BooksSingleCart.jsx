@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { PiBookOpenTextLight } from "react-icons/pi";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle, BiShow } from "react-icons/bi";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
+import { useState } from "react";
+import BookModel from "./BookModel";
 
 const BooksSingleCart = ({ book }) => {
+  const [showModel, setShowModel] = useState(false);
+
   return (
     <div
       key={book.id}
@@ -25,6 +29,10 @@ const BooksSingleCart = ({ book }) => {
         <h2 className="my-1">{book.author}</h2>
       </div>
       <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
+        <BiShow
+          className="text-3xl text-blue-800 hover:text-black cursor-pointer"
+          onClick={() => setShowModel(true)}
+        />
         <Link to={`/books/details/${book._id}`}>
           <BsInfoCircle className="text-2xl text-green-800 hover:text-black" />
         </Link>
@@ -35,6 +43,9 @@ const BooksSingleCart = ({ book }) => {
           <MdOutlineDelete className="text-2xl text-red-600 hover:text-black" />
         </Link>
       </div>
+      {showModel && (
+        <BookModel book={book} onClose={() => setShowModel(false)} />
+      )}
     </div>
   );
 };
